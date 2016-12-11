@@ -11,7 +11,7 @@ EXPOSE 22005/udp
 
 #RUN mkdir /server
 
-RUN echo 'deb http://mirror.yandex.ru/debian testing main contrib non-free' > /etc/apt/sources.list
+RUN echo 'deb http://httpredir.debian.org/debian testing main contrib non-free' > /etc/apt/sources.list
 RUN apt-get update \
     && apt-get install -y -t testing gcc
 
