@@ -3,23 +3,34 @@ MAINTAINER Disinterpreter "disinterpreter@protonmail.ch"
 
 ENV RAGEMP 0.1
 
-RUN useradd ragemp
-
+# both and tcp and udp? check it!
 EXPOSE 20005
 EXPOSE 22005/udp
 
-#RUN mkdir /server
+# First run  -- install dependency
+RUN echo 'deb http://httpredir.debian.org/debian testing main contrib non-free' > /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y -t testing gcc wget && \
+    apt-get clean
 
-RUN echo 'deb http://httpredir.debian.org/debian testing main contrib non-free' > /etc/apt/sources.list
-RUN apt-get update \
-    && apt-get install -y -t testing gcc wget
+# Second run -- install app
+RUN useradd ragemp && \
+    # Mountable volume
+    mkdir /ragemp && \
+    # Download and extract
+    wget -qO- -O /tmp/linsrv64.tar.gz https://rage.mp/dl/linsrv64.tar.gz && \
+    tar -zxvf /tmp/linsrv64.tar.gz -C /opt  && \
+    rm /tmp/linsrv64.tar.gz && \
+    # Set exec flag
+    chmod +x /opt/x64/server
+    # Set links between master and mountable volume
+    ln -s /ragemp/conf.json /opt/x64/conf.json
+    # You can add packages, maps, etc in remote volume
 
-RUN cd ~/ && wget https://rage.mp/dl/linsrv64.tar.gz
-RUN cd ~/ && tar -xvf ./linsrv64.tar.gz
-RUN cd ~/ && ln -s x64/server /ragemp
-ADD start_server.sh ~/
-RUN chmod -R 777 ~/x64/server 
-ENTRYPOINT ["~/start_server.sh"]
-CMD [""]
+# Publish volume
+VOLUME /ragemp
 
-VOLUME /root/server
+ADD start_server.sh /opt
+
+# Maybe directly run server? e.g. "/ragemp/x64/server"
+ENTRYPOINT ["/opt/start_server.sh"]
