@@ -16,9 +16,9 @@ RUN apt-get update \
 
 RUN cd ~/ && wget https://rage.mp/dl/linsrv64.tar.gz
 RUN cd ~/ && tar -xvf ./linsrv64.tar.gz
-RUN cd ~/ && ln -s server /ragemp
+RUN cd ~/ && ln -s x64/server /ragemp
 ADD start_server.sh ~/
-RUN chmod -R 777 ~/server 
+RUN chmod -R 777 ~/x64/server 
 ENTRYPOINT ["~/start_server.sh"]
 CMD [""]
 
