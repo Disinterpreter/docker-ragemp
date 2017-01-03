@@ -14,7 +14,7 @@ RUN echo 'deb http://httpredir.debian.org/debian testing main contrib non-free' 
 RUN apt-get update \
     && apt-get install -y -t testing gcc wget
 
-RUN cd ~/ && wget http://46.226.165.173/ragemp.tar.gz
+RUN cd ~/ && wget https://rage.mp/dl/linsrv64.tar.gz
 RUN cd ~/ && tar -xvf ./ragemp.tar.gz
 RUN cd ~/ && ln -s server /ragemp
 ADD start_server.sh ~/
