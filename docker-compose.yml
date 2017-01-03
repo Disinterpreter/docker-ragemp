@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  ragemp-server:
+    image: disinterpreter/docker-ragemp
+    container_name: ragemp-server
+    ports:
+      - 22005:22005
+      - 22005:22005/udp
+    volumes:
+      - .:/ragemp
+    restart: always
