@@ -15,7 +15,7 @@ RUN apt-get update \
     && apt-get install -y -t testing gcc wget
 
 RUN cd ~/ && wget https://rage.mp/dl/linsrv64.tar.gz
-RUN cd ~/ && tar -xvf ./ragemp.tar.gz
+RUN cd ~/ && tar -xvf ./linsrv64.tar.gz
 RUN cd ~/ && ln -s server /ragemp
 ADD start_server.sh ~/
 RUN chmod -R 777 ~/server 
