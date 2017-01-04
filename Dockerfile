@@ -20,15 +20,16 @@ RUN useradd ragemp && \
     # Download and extract
     wget -qO- -O /tmp/linsrv64.tar.gz https://rage.mp/dl/linsrv64.tar.gz && \
     tar -zxvf /tmp/linsrv64.tar.gz -C /opt  && \
-    rm /tmp/linsrv64.tar.gz && \
-    # Set exec flag
-    chmod +x /opt/x64/server
+    rm /tmp/linsrv64.tar.gz
+RUN chmod +x /opt/x64/server
     # Set links between master and mountable volume
-    ln -s /ragemp/conf.json /opt/x64/conf.json
-    # You can add packages, maps, etc in remote volume
 
 # Publish volume
 VOLUME /ragemp
+
+RUN ln -s /opt/x64/conf.json /ragemp/conf.json
+# You can add packages, maps, etc in remote volume
+
 
 ADD start_server.sh /opt
 
