@@ -1,5 +1,6 @@
 #!/bin/sh
 echo "Starting server!!!"
 #nohup sh -c /root/server/server >/dev/null 2>&1 &
-cd /ragemp && ls
-/root/server/server
+cp -r -n /opt/x64/* /ragemp
+cd /ragemp
+/ragemp/server
