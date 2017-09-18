@@ -6,7 +6,7 @@ ENV RAGEMP 0.1
 # both and tcp and udp? check it!
 EXPOSE 20005
 EXPOSE 22005/udp
-
+EXPOSE 22006
 # First run  -- install dependency
 RUN echo 'deb http://httpredir.debian.org/debian testing main contrib non-free' > /etc/apt/sources.list && \
     apt-get update && \
@@ -18,9 +18,11 @@ RUN useradd ragemp && \
     # Mountable volume
     mkdir /ragemp && \
     # Download and extract
-    wget -qO- -O /tmp/linsrv64.tar.gz https://rage.mp/dl/linsrv64.tar.gz && \
-    tar -zxvf /tmp/linsrv64.tar.gz -C /opt  && \
-    rm /tmp/linsrv64.tar.gz
+    wget -qO- -O /tmp/server https://cdn.rage.mp/lin/server && \
+    mkdir /opt/x64/ && \
+    mv /tmp/server /opt/x64/server
+    #tar -zxvf /tmp/linsrv64.tar.gz -C /opt  && \
+    #rm /tmp/linsrv64.tar.gz
 RUN chmod +x /opt/x64/server
     # Set links between master and mountable volume
 
