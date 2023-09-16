@@ -36,10 +36,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Deploy to GitHub
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: disinterpreter/ragemp-server:latest
+      - name: Build RAGEMP Server and push
+        run: | 
+          docker build -t ghcr.io/disinterpreter/ragemp-server:latest .
+          docker push ghcr.io/disinterpreter/ragemp-server:latest
