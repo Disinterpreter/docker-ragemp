@@ -1,12 +1,22 @@
-version: "2"
+version: "3.9"
 
 services:
   ragemp-server:
-    image: ragemp
-    container_name: ragemp-server
+    image: disinterpreter/ragemp-server:latest
     ports:
       - 22005:22005
+      - 22006:22006
       - 22005:22005/udp
-    volumes:
-      - /ragemp:/ragemp
+    environment:
+      RAGE_MAXPLAYERS: "100"
+      RAGE_NAME: "RAGE:MP Unofficial docker server [docker]"
+      RAGE_GAMEMODE: "freeroam"
+      RAGE_STREAM_DISTANCE: "300.0"
+      RAGE_ANNOUNCE: '1'
+      RAGE_CSHARP: "disabled"
+      RAGE_BIND: '0.0.0.0'
+      RAGE_PORT: '22005'
+
+    # volumes:
+    #   - /ragemp:/ragemp
     restart: always

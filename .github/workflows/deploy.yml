@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ "experience", "master" ]
+
+jobs:
+  deploy2dockerhub:
+    name: Deploy to Dockerhub
+    runs-on: ubuntu-latest
+    environment: dockerhub
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Deploy
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: disinterpreter/ragemp-server:latest
+          
+  deploy2github:
+    name: Deploy to GitHub registry
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/disinterpreter/ragemp-server:latest
