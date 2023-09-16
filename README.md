@@ -1,3 +1,5 @@
+![Docker: Pulls](https://img.shields.io/docker/pulls/disinterpreter/ragemp-server)
+
 # docker-ragemp
 A docker container for RAGE Multiplayer
 
@@ -44,4 +46,8 @@ docker run -e RAGE_BIND=0.0.0.0 .... -p 22005:22005/udp ragemp-server:latest
 Pull from a container registry
 ```
 docker pull disinterpreter/ragemp-server:latest
+```
+or
+```
+docker pull ghcr.io/disinterpreter/ragemp-server:latest
 ```

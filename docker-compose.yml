@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   ragemp-server:
-    image: ragemp-server:latest
+    image: disinterpreter/ragemp-server:latest
     ports:
       - 22005:22005
       - 22006:22006
