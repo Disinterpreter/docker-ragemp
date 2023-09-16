@@ -4,9 +4,9 @@
 A docker container for RAGE Multiplayer
 
 ## History
-It is the first docker container implementation for RAGE MP, first commit if this repo is 11 dec of 2016.
+It is the first docker container implementation for RAGE MP Server, first commit of this repo is 11 dec 2016.
 
-But after the time I've got new experience with working on containerization and Docker, and I decided to upgrade this repo and add new features.
+But after the time I've got new experience with working on containerization and I decided to upgrade this repo added new features.
 
 ## Features
 - Updated version of the OS and the code
