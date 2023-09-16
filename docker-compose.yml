@@ -5,6 +5,7 @@ services:
     image: ragemp-server:latest
     ports:
       - 22005:22005
+      - 22006:22006
       - 22005:22005/udp
     environment:
       RAGE_MAXPLAYERS: "100"

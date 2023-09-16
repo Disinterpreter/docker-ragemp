@@ -2,6 +2,7 @@ FROM debian:bookworm-slim
 
 EXPOSE 20005
 EXPOSE 22005/udp
+EXPOSE 22006
 
 RUN apt update && apt install -y wget liblocal-lib-perl libjson-perl libatomic1 procps && \
     apt clean autoclean && \
